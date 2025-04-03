@@ -93,3 +93,36 @@ GitHub Discussions é um fórum de comunicação colaborativo dentro do GitHub. 
 
 ##
 <div align="center">Feito com 💙 por <a href="https://github.com/elidianaandrade">Eli</a>.</div>
+
+Como resolver um possivel erro ao tenta clona.
+
+Ao tenta clona utilizando o git clone + "URL" pode ocorrer o seguinte erro.
+
+" error: RPC failed; curl 56 schannel: failed to read data from server: SEC_E_DECRYPT_FAILURE (0x80090330) - Os dados especificados no puderam ser decodificados.
+error: 1545 bytes of body are still expected
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output "
+
+
+Esse erro se dar porque as versões atuais do protocolo HTTP, HTTP/2 e HTTP/3 o git não linda bem com o HTTP/2 e o HTTP/3.
+
+Para baixa o arquivo git no desktop basta definir temporariamente que o Git use a versão HTTP/1.1 com o seguinte comando.
+
+
+1- git -c http.version=HTTP/1.1 ou seja ficar dessa forma.
+Ex: git -c http.version=HTTP/1.1 clone "URL"
+
+
+Para que fique mais completa a solução adicione o seguinte comando --depth=1 ficando da seguinte forma.
+
+2- Ex; git -c http.version=HTTP/1.1 clone --depth=1 "URL"
+
+Esse comando --depth serve para baixa a última versão do arquivo que deseja baixa.
+Contexto adicional
+Adicione qualquer outro contexto ou captura de tela sobre a solicitação de recurso aqui.
+
+<a href= "https://github.com/ROBSON-F-DOS-SANTOS/dio-lab-open-source.git" >
+
+
+
